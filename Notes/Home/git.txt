@@ -1,0 +1,10 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2018-06-14T15:26:11+09:00
+
+====== git ======
+Created 목요일 14 6월 2018
+
+drwxr-xr-x 1 USER 197121 0 6월  14 14:38 ./
+drwxr-xr-x 1 USER 197121 0 6월  14 14:38 ../
+drwxr-xr-x 1 USER 197121 0 6월  14 15:26 Notes/
