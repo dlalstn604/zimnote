@@ -5,6 +5,26 @@ Creation-Date: 2018-06-14T15:26:11+09:00
 ====== git ======
 Created 목요일 14 6월 2018
 
-drwxr-xr-x 1 USER 197121 0 6월  14 14:38 ./
-drwxr-xr-x 1 USER 197121 0 6월  14 14:38 ../
-drwxr-xr-x 1 USER 197121 0 6월  14 15:26 Notes/
+ls -al 
+현재 폴더의 내용을 보여준다.
+
+git init 
+초기화한다.(마스터가 생긴다.)
+
+git status
+git의 상태를 보여준다.
+
+git add --all .
+스테이징한다.
+
+git --cached 
+언스테이징 한다 .
+
+git config --global user.email "you@example.com"
+git config --global user.name "Your Name"
+사용자 이메일과 성명을 적는다.
+
+git commit -m "zimnote 시작"
+내용을 적고 커밋한다.
+
+
