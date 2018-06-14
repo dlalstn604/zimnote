@@ -27,4 +27,5 @@ git config --global user.name "Your Name"
 git commit -m "zimnote 시작"
 내용을 적고 커밋한다.
 
-
+ git remote add origin https://github.com/dlalstn604/zimnote.git
+ git push -u origin master
