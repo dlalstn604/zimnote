@@ -349,6 +349,138 @@ public class HouseDog extends Dog {
 부모 메소드의 입력항목의 타입과 다른 동일한 이름의 메소드를 만들수 있는데 
 이것을 **메소드 오버로딩(Method overloading)** 이라고 부른다.
 
+--------------------
+
+==== 5. 생성자 ====
+
+생성자의 규칙
+1. 클래스명과 메소드명이 동일하다.
+2. 리턴타입을 정의하지 않는다. 값을 반환하지 않는다.
+
+
+객체가 만들어질때 기본적으로 가져야할 항목을 설정할 때 사용한다.
+
+public class HouseDog extends Dog {
+	public HouseDog(String name) { __//생성자__
+		this.setName(name);
+	} 
+	
+	public void sleep() {//오버라이딩
+		System.out.println(this.name+" zzz zzz zzz");
+	}
+	
+	public void sleep(int hour) {
+		System.out.println(this.name+" zzz zzz zzz "+hour+"hours");
+	}
+	
+	public static void main(String[] args) {
+		HouseDog dog = new HouseDog("happy"); __//new 로 객체가 만들어질때 설정__
+		System.out.println(dog.name);
+		HouseDog dog2 = new HouseDog(); __// 반드시 name을 설정해줘야 한다.컴파일 오류가 발생.__
+		System.out.println(dog2.name); 
+	}
+
+}
+
+
+==== default 생성자 ====
+
+public Dog( ) {
+}
+
+생성자의 입력 항목이 없고 생성자 내부에 아무 내용이 없는 생성자를 __default 생성자__라고 부른다.
+
+new Dog( ) 로 Dog 객체가 만들어 질 때 디폴트 생성자가 실행된다.
+
+만약 클래스에 생성자가 하나도 없다면 컴파일러는 자동으로 디폴트 생성자를 추가한다.
+자동으로 생성되는 디폴트 생성자는 표시되지 않는다.
+
+사용자가 작성한 생성자가 하나라도 구현되어 있다면 컴파일러는 디폴트 생성자를 추가하지 않는다.
+
+
+==== 생성자 오버로딩 ====
+
+하나의 클래스에 여러개의 입력항목이 다른 생성자를 만들 수 있다.
+
+	public HouseDog(String name) {
+		this.setName(name);
+	}
+
+	public HouseDog(int type) {
+		if (type == 1) {
+			this.setName("yorkshire");
+		} else if (type == 2) {
+			this.setName("bulldog");
+		}
+	}
+
+new로 인스턴스를 만들때 객체변수에 넣을 값을 둘중 생성자 하나만 넣어줘도 오류가 나지 않는다.
+
+
+==== super ====
+
+class가 인스턴스화 될때 생성자가 실행되면서 객체를 초기화 한다.
+
+그 때 자신의 생성자만 실행이 되는것이 아니고, 부모의 생성자부터 차례로 실행된다. 
+
+하위 클래스의 생성자에서 super를 사용할 때 주의할 점은 super가 가장 먼저 나타나야 한다.
+
+public class Car {
+	public Car(String name) {
+		System.out.println("Car의 기본생성자 입니다."+name);
+	}
+}
+
+public class Bus extends Car {
+	public Bus(String name1) {
+		super("dd");
+		//컴파일러가 자동으로 부모의 생성자를 호출하면서 부모객체를 초기화
+		System.out.println("Bus의 기본생성자 입니다."+name1);
+	}
+}
+
+public class BusExam {
+	public static void main(String[] args) {
+		Bus b = new Bus("ha"); 
+		//Bus 객체가 메모리에 올라갈 때 부모인 Car도 함께 메모리에 올라간다.
+	}
+}
+
+result
+
+Car의 기본생성자 입니다.dd
+Bus의 기본생성자 입니다.ha
+
+--------------------
+
+
+==== 6. 인터페이스 ====
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
