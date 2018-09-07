@@ -1,0 +1,56 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2018-09-05T16:13:56+09:00
+
+====== 1장 Java 시작하기 ======
+Created 수요일 05 9월 2018
+
+
+===== 변수 =====
+
+1. 변수명은 숫자로 시작할 수 없다.
+2. 변수 자료형과 일치하는 값을 대입해야 한다.
+3. _ 와 $ 문자 이외의 특수문자는 사용할 수 없다.
+4. 자바의 키워드는 변수명으로 사용할 수 없다 .
+
+자료형 변수 = 값
+예) int a = 2; / string b = "hello"
+
+* Primitive
+	* Numeric
+		* Interger
+			* byte(8bit)
+			* short
+			* int(정수 표현)
+			* long
+			* char(글자 하나)
+		* Floating Point Type
+			* float
+			* double(소수 표현, 기본)
+	* Boolean
+		* Boolean(참/거짓)
+* Reference
+	* Class
+	* Interface
+	* Array
+	* Enum(열거 타입)
+
+int 계산 속도가 제일 빠르다
+byte short  바뀌지않는 데이터를 저장할때 사용한다.
+
+사용되는 바이트의 크기 기본 자료형
+1byte(8 127 byte
+2byte(16 32768 short, char
+3byte(32 2147483647 int, float
+4byte(64 18446744073709551615 long, double
+
+===== main 메소드 =====
+
+public class Test {
+	public static void main(String[] args) {
+		System.out.println("Hello World");
+	}
+}
+
+메인 메소드는 프로그램 실행시 파라미터를 입력으로 받을 수 있다. 
+프로그램 실행시 전달되는 파라미터는 메소드의 입력 파라미터 String[] args에 저장된다.

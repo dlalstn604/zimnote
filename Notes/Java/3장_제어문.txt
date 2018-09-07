@@ -1,0 +1,114 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2018-09-05T16:12:34+09:00
+
+====== 3장 제어문 ======
+Created 수요일 05 9월 2018
+
+==== 1. if문 ====
+
+**contains**
+해당아이템이 있는지 조사하는 contains라는 메소드
+
+ArrayList<String> pocket = new ArrayList<String>();
+pocket.add("money");
+
+if (pocket.contains("money")) {
+	System.out.println("택시를 타고 가라");
+}else {
+	System.out.println("걸어가라");
+}
+
+**else if (다중 조건 판단)**
+
+이해하기 쉽지 않고 산만한 점을 다중 조건을 판단 가능하게 하는 else if 
+
+if (pocket.contains("money")) {
+	System.out.println("택시를 타고 가라");
+}else {
+	if (hasCard) {
+		System.out.println("택시를 타고 가라");
+	}else {         
+		System.out.println("걸어가라");
+	}
+}
+
+if (pocket.contains("money")) {
+	System.out.println("택시를 타고 가라");
+}else if(hasCard) {
+	System.out.println("택시를 타고 가라");
+}else {         
+	System.out.println("걸어가라");
+}
+
+--------------------
+
+==== 2. switch/case 문 ====
+
+switch 의 입력 변수의 값과 일치하는 case 입력값이 있다면 해당 case 문 하위의 문장이 실행된다.
+case 마다의 break 를 둬서 해당 case문을 실행한 뒤 switch 문을 빠져 나가게 한다.
+
+--------------------
+
+==== 3. while 문 ====
+
+조건이 참이라면 거짓일때 까지 실행하는 while문
+
+
+**무한루프(Loop)**
+
+무한히 반복한다는 의미이다.
+
+while (true) {
+	System.out.println("Ctrl-C를 눌러야 while문을 빠져 나갈 수 있습니다.");
+
+이클립스에서는 "중지" 버튼을 클릭
+
+
+
+**while문 빠져 나가기 (break)**
+
+while문을 빠져나가고 싶을때 if문을 사용하여 break를 호출하여 while문을 빠져나가게 한다.
+
+int coffee = 10;
+int money = 300;
+
+while (money > 0) {
+	System.out.println("돈을 받았으니 커피를 줍니다.");
+	coffee--;
+	System.out.println("남은 커피의 양은 " + coffee + "입니다.");
+	if (coffee == 0) {
+		System.out.println("커피가 다 떨어졌습니다. 판매를 중지합니다.");
+		break;
+	}
+}
+
+
+**while문 조건문으로 돌아가기 (continue)**
+
+int a = 0;
+while (a < 10) {
+	a++;
+	if (a % 2 == 0) {
+		continue;
+	}
+	System.out.println(a);
+}
+
+짝수인경우 continue 로 while 반복문으로 돌아가고
+홀수인경우 System.out.println(a) 수행
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

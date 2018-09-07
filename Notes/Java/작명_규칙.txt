@@ -1,0 +1,12 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2018-09-05T15:27:57+09:00
+
+====== 작명 규칙 ======
+Created 수요일 05 9월 2018
+
+for classes : HelloWorld
+for variables : helloWorld
+for methods : helloWorld
+for package/projects : helloworld
+for constants : HELLO_WORLD
