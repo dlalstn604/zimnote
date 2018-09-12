@@ -1,0 +1,236 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2018-09-11T10:01:40+09:00
+
+====== 6장 자바 날개 달기 ======
+Created 화요일 11 9월 2018
+
+==== 1. 패키지 ====
+
+비슷한 성격의 자바 클래스들을 모아 넣는 자바의 디렉토리이다.
+
+다른 클래스에서 HouseKim 클래스를 사용하기위해 import 한다.
+import jump2java.house.HouseKim;
+
+import jump2java.house.*;
+
+* *를 사용하면 house 패키지 내의 모든 클래스를 import 하게 된다.
+
+* 패키지가 다르면 동일한 클래스명을 사용할 수 있다.
+
+--------------------
+
+==== 2. 접근제어자 ====
+
+
+private < default < protected < public 순으로 보다 많은 접근을 허용한다.
+
+
+__private__ 해당 클래스 내에서만 접근이 가능하다
+	private 이 붙은 변수, 메소드는 해당 클래스에서만 접근이 가능하다.
+	Source > getters and setters 를 사용하여 클래스 내에서 사용한다.
+	
+__default__ 해당 패키지 내에서만 접근이 가능하다
+	접근제어자 생략시 default
+	
+__protected__ 패키지내 또는 상속받은 클래스
+	protected가 붙은 변수, 메소드는 동일 패키지내의 클래스 또는 
+	해당 클래스를 상속받은 외부 패키지의 클래스에서 접근이 가능하다.
+ 
+	패키지 밖일땐 import 하고 extends 상속을 한다.
+
+protected 와 public 을 사용하여 코딩을 하자
+
+protected를 사용하여 실수를 방지하고  기타 위험요소를 제거 할 수 있다.
+
+--------------------
+
+==== 3. 정적 변수와 메소드(static) ====
+
+static 이 붙으면 클래스변수
+
+static 키워드를 붙이면 메모리 할당을 한번만 한다.
+
+※ 만약 HousePark 클래스의 lastname값이 변경되지 않기를 바란다면 
+static 키워드 앞에 final이라는 키워드를 붙이면 된다. 
+final 키워드는 한번 설정되면 그 값을 변경하지 못하게 하는 기능이 있다. 
+변경하려고 하면 예외가 발생한다.
+
+== 공유의 개념으로 static ==
+
+public class Counter  {
+	int count = 0;
+	Counter() {
+		this.count++;
+		System.out.println(this.count);
+	}
+
+	public static void main(String[] args) {
+		Counter c1 = new Counter();
+		Counter c2 = new Counter();
+	}
+}
+
+c1, c2 객체 생성시 count 값을 1씩 증가하더라도 c1과 c2의 count는 서로 다른 메모리를 가리키고 있기 때문에 원하던 결과(카운트가 증가된)가 나오지 않는 것이다. 
+__객체변수는 항상 독립적인 값을 갖기 때문__에 당연한 결과이다.
+
+
+public class Counter  {
+	static int count = 0;
+	Counter() {
+		this.count++;
+		System.out.println(this.count);
+	}
+
+	public static void main(String[] args) {
+		Counter c1 = new Counter();
+		Counter c2 = new Counter();
+	}
+}
+
+int count = 0 앞에 static 키워드를 붙였더니 count 값이 공유되어 
+다음과 같이 방문자수가 증가된 결과값이 나오게 되었다.
+
+__보통 변수의 static 키워드는 메모리의 효율보다는 공유하기 위한 용도로 훨씬 더 많이 사용한다.__
+
+
+== static method ==
+
+static이라는 키워드가 메소드 앞에 붙으면 이 메소드는 스태틱 메소드(static method)가 된다. 
+
+public class Counter  {
+	static int count = 0;
+	Counter() {
+		this.count++;
+	}
+
+	public static int getCount() {
+		return count;
+	}
+
+	public static void main(String[] args) {
+		Counter c1 = new Counter();
+		Counter c2 = new Counter();
+
+		System.out.println(Counter.getCount());
+	}
+}
+
+getCount() 라는 static 메소드가 추가되었다. main 메소드에서 getCount() 메소드는 Counter.getCount() 와 같이 클래스를 통해 호출할 수 있게 된다.
+
+※ __스태틱 메소드 안에서는 인스턴스 변수 접근이 불가능__ 하다. 위 예에서 __count는 static 변수__이기 때문에 스태틱 메소드(static method)에서 접근이 가능한 것이다.
+
+보통 스태틱 메소드는 유틸리티 성 메소드를 작성할 때 많이 사용된다. 예를 들어 "오늘의 날짜 구하기", "숫자에 콤마 추가하기"등의 메소드를 작성할 때에는 클래스 메소드를 사용하는 것이 유리하다.
+
+**날짜를** **구하는 클래스의 예**
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+
+public class Util {
+	public static String getCurrentDate(String fmt) {
+		SimpleDateFormat sdf = new SimpleDateFormat(fmt);
+		return sdf.format(new Date());
+	}
+
+	public static void main(String[] args) {
+		System.out.println(Util.getCurrentDate("yyyyMMdd"));
+	}
+}
+
+==== 싱글톤 패턴(singleton pattern) ====
+
+하나만의 객체를 만들 때 가장 이상적이게 생성하는 디자인 패턴이다.
+
+클래스를 통해 생성할 수 있는 객체는 Only One, 즉 한 개만 되도록 만드는 것이 싱글톤이다.
+
+
+class Singleton {
+	private Singleton() {
+	}
+}
+
+public class SingletonTest {
+	public static void main(String[] args) {
+		Singleton singleton = new Singleton();
+	}
+}
+
+생성자를 private로 만들었기 때문에 다른 클래스에서 인스턴스를 만들 수 없다.
+
+컴파일 에러가 난다.
+
+
+class Singleton {
+	private Singleton() {
+	}
+
+	public static Singleton getInstance() {
+		return new Singleton();
+	}
+}
+
+public class SingletonTest {
+	public static void main(String[] args) {
+		Singleton singleton = Singleton.getInstance();
+	}
+}
+
+위의 예제는 이름만 다르게 하면 여러개의 객체가 생성이 가능하다.
+
+class Singleton {
+	private static Singleton one;
+	private Singleton() {
+	}
+
+	public static Singleton getInstance() {
+		if(one==null) {
+			one = new Singleton();
+		}
+		return one;
+	}
+}
+
+public class SingletonTest {
+	public static void main(String[] args) {
+		Singleton singleton1 = Singleton.getInstance();
+		Singleton singleton2 = Singleton.getInstance();
+		System.out.println(singleton1 == singleton2);
+	}
+}
+
+인스턴스를 아무리 만들어도 값은 똑같다.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
